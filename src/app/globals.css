@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+
+  --color-void: #08090c;
+  --color-surface: #0e1014;
+  --color-panel: #12141a;
+  --color-elevated: #171a21;
+  --color-line: rgba(255, 255, 255, 0.075);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+
+  --color-mint: #a3e635;
+  --color-mint-soft: rgba(163, 230, 53, 0.12);
+  --color-amber-glow: #fbbf24;
+  --color-danger: #fb7185;
+
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+}
+
+html,
+body {
+  background: var(--color-void);
+  color: #f4f5f7;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(163, 230, 53, 0.28);
+  color: #fff;
+}
+
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Numeric tabular figures for money */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Glass panel */
+.panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+    var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+}
+
+.panel-hover {
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
+}
+.panel-hover:hover {
+  border-color: var(--color-line-strong);
+}
+
+/* Inputs */
+.field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.875rem;
+  color: #f4f5f7;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.field::placeholder {
+  color: rgba(244, 245, 247, 0.32);
+}
+.field:focus {
+  border-color: rgba(163, 230, 53, 0.55);
+  background: rgba(163, 230, 53, 0.045);
+  box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.12);
+}
+.field[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+}
+
+/* Ambient background glow */
+.ambient::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 480px at 85% -10%, rgba(163, 230, 53, 0.055), transparent 60%),
+    radial-gradient(700px 420px at -10% 110%, rgba(56, 189, 248, 0.05), transparent 60%);
+  z-index: 0;
+}
+
+/* Recharts polish */
+.recharts-tooltip-cursor {
+  fill: rgba(255, 255, 255, 0.04);
+}
+.recharts-cartesian-axis-tick text {
+  fill: rgba(244, 245, 247, 0.4);
+  font-size: 11px;
+}
+.recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.05);
+}
